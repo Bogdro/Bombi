@@ -8,6 +8,7 @@ public class Sprite
 	private SpriteSheet sheet;
 	
 	public static Sprite player = new Sprite(16, 0, 0, SpriteSheet.playerModel);
+	public static Sprite grass = new Sprite(16, 0, 0, SpriteSheet.grass);
 	
 	public Sprite(int size, int x, int y, SpriteSheet sheet)
 	{

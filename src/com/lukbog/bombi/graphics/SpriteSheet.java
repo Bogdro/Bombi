@@ -12,6 +12,7 @@ public class SpriteSheet
 	public int[] pixels;
 	
 	public static SpriteSheet playerModel = new SpriteSheet("/textures/Player.png", 16);
+	public static SpriteSheet grass = new SpriteSheet("/textures/spritesheet.png", 256);
 	
 	public SpriteSheet(String path, int size)
 	{

@@ -11,6 +11,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import com.lukbog.bombi.Screen;
+import com.lukbog.bombi.input.Keyboard;
 
 class Game extends Canvas implements Runnable
 {
@@ -18,12 +19,13 @@ class Game extends Canvas implements Runnable
 	private Thread thread;
 	private boolean running = false;
 	public static int width = 680;
-	public static int height = 520;
+	public static int height = width / 4 * 3;
 	private JFrame frame;
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
 	private Screen screen;
 	public static String title = "Bomberman";
+	private Keyboard key;
 	
 	public Game()
 	{
@@ -32,6 +34,9 @@ class Game extends Canvas implements Runnable
 		
 		screen = new Screen(width, height);
 		frame = new JFrame();
+		key = new Keyboard();
+		
+		addKeyListener(key);
 	}
 	
 	public synchronized void start()
@@ -61,6 +66,7 @@ class Game extends Canvas implements Runnable
 		double delta = 0;
 		int frames = 0;
 		int updates = 0;
+		requestFocus();
 		
 		while (running)
 		{
@@ -87,9 +93,15 @@ class Game extends Canvas implements Runnable
 		stop();
 	}
 	
+	int x = 0, y = 0;
+	
 	public void update()
 	{
-		
+		key.update();
+		if (key.up) y--;
+		if (key.down) y++;
+		if (key.left) x --;
+		if (key.right) x++;
 	}
 	
 	public void render()
@@ -101,7 +113,7 @@ class Game extends Canvas implements Runnable
 			return;
 		}
 		screen.clear();
-		screen.render();
+		screen.render(x, y);
 		
 		for (int i = 0; i < pixels.length; i++)
 		{
@@ -111,7 +123,6 @@ class Game extends Canvas implements Runnable
 		Graphics g = bs.getDrawGraphics();
 		
 		//Tutaj wrzucamy grafike
-		g.setColor(Color.blue);
 		g.fillRect(0, 0, width, height);
 		g.drawImage(image,  0,  0,  getWidth(),  getHeight(), null);
 		//dispose() Usuwa grafiki z bufora po wyrenderowaniu (?)

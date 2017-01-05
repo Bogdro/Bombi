@@ -6,26 +6,29 @@ import com.lukbog.bombi.level.tile.Tile;
 public class Level 
 {
 	protected int width, height;
+	protected int[] tileInt;
 	protected int[] tiles;
 	
 	public Level(int width, int height)
 	{
 		this.width = width;
 		this.height = height;
-		tiles = new int[width * height];
+		tileInt = new int[width * height];
 		generateLevel();
 	}
 	
 	public Level(String path)
 	{
 		loadLevel(path);
+		generateLevel();
 	}
+	
 	protected void generateLevel()
 	{
 		
 	}
 	
-	private void loadLevel (String path)
+	protected void loadLevel (String path)
 	{
 		
 	}
@@ -35,6 +38,7 @@ public class Level
 		
 	}
 	
+	@SuppressWarnings("unused")
 	private void time()
 	{
 		
@@ -60,9 +64,13 @@ public class Level
 	
 	public Tile getTile(int x, int y)
 	{
+		// Sciana = 000000;
+		// Spawny = FFD000;
+		// Randomowe_klocki = FFFFFF;
+		
 		if (x < 0 || y < 0 || x >= width || y >= height) return Tile.voidTile;
-		if (tiles[x + y * width] == 0) return Tile.brick;
-		if (tiles[x + y * width] == 1) return Tile.wall;
+		if (tiles[x + y * width] == 0xFF000000) return Tile.wall;
+		//if (tiles[x + y * width] == 1) return Tile.wall;
 		return Tile.voidTile;
 	}
 }

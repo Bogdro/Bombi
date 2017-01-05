@@ -12,8 +12,9 @@ import javax.swing.JFrame;
 import com.lukbog.bombi.Screen;
 import com.lukbog.bombi.entity.mob.Player;
 import com.lukbog.bombi.input.Keyboard;
+import com.lukbog.bombi.level.FirstLevel;
 import com.lukbog.bombi.level.Level;
-import com.lukbog.bombi.level.RandomLevel;
+import com.lukbog.bombi.level.TileCoordinate;
 
 class Game extends Canvas implements Runnable
 {
@@ -39,8 +40,9 @@ class Game extends Canvas implements Runnable
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
-		level = new RandomLevel(10, 8);
-		player = new Player(key);
+		level = new FirstLevel("/levels/firstLevel.png");
+		TileCoordinate playerSpawn = new TileCoordinate(1,1);
+		player = new Player(playerSpawn.x(), playerSpawn.y(),key);
 		
 		addKeyListener(key);
 	}

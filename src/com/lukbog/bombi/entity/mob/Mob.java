@@ -45,7 +45,13 @@ public abstract class Mob extends Entity
 	private boolean collision(int dx, int dy)
 	{
 		boolean solid = false;
-		if (level.getTile((x + dx) / 64, (y + dy) / 64 ).solid()) solid = true;
+		for (int c = 0; c < 4; c++)
+		{
+			int xt = ((x + dx) + c % 2 * 31 + 16) / 64;
+			int yt = ((y + dy) + c / 2 * 61 + 2) / 64;
+			if (level.getTile(xt , yt).solid()) solid = true;
+		}
+		
 		return solid;
 	}
 	

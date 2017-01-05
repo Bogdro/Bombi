@@ -14,7 +14,7 @@ public abstract class Mob extends Entity
 	protected int dir = 0;
 	protected boolean moving = false;
 	//0 - góra, 1 - prawo, 2 dó³, 3 lewo
-	private int up = 0, right = 1, down = 2, left = 3;
+	protected int up = 0, right = 1, down = 2, left = 3;
 	
 	public void move(int dx, int dy)
 	{

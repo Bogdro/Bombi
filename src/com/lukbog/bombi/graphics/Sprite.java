@@ -7,10 +7,21 @@ public class Sprite
 	public int[] pixels;
 	private SpriteSheet sheet;
 	
-	public static Sprite player = new Sprite(64, 5, 0, SpriteSheet.spriteSheet);
 	public static Sprite wall = new Sprite(64, 0, 0, SpriteSheet.spriteSheet);
-	public static Sprite grass = new Sprite(64, 1, 0, SpriteSheet.spriteSheet);
+	public static Sprite brick = new Sprite(64, 1, 0, SpriteSheet.spriteSheet);
 	public static Sprite voidSprite = new Sprite(64, 0xff11ff); 
+	
+	public static Sprite player_walking_side_1 = new Sprite(64, 6, 0, SpriteSheet.spriteSheet);
+	public static Sprite player_walking_side_2 = new Sprite(64, 7, 0, SpriteSheet.spriteSheet);
+	public static Sprite player_walking_side_3 = new Sprite(64, 8, 0, SpriteSheet.spriteSheet);
+	public static Sprite player_walking_side_4 = new Sprite(64, 9, 0, SpriteSheet.spriteSheet);
+	
+	public static Sprite player_walking_down_1 = new Sprite(64, 0, 1, SpriteSheet.spriteSheet);
+	public static Sprite player_walking_down_2 = new Sprite(64, 1, 1, SpriteSheet.spriteSheet);
+	
+	public static Sprite player_walking_up_1 =new Sprite(64, 2, 1, SpriteSheet.spriteSheet);
+	public static Sprite player_walking_up_2 =new Sprite(64, 3, 1, SpriteSheet.spriteSheet);
+	
 	
 	public Sprite(int size, int x, int y, SpriteSheet sheet)
 	{

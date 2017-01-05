@@ -3,9 +3,9 @@ package com.lukbog.bombi.level.tile;
 import com.lukbog.bombi.Screen;
 import com.lukbog.bombi.graphics.Sprite;
 
-public class GrassTile extends Tile
+public class BrickTile extends Tile
 {
-	public GrassTile(Sprite sprite) 
+	public BrickTile(Sprite sprite) 
 	{
 		super(sprite);
 	}
@@ -13,5 +13,10 @@ public class GrassTile extends Tile
 	public void render(int x, int y, Screen screen)
 	{
 		screen.renderTile(x << 6 ,  y << 6, this);
+	}
+	
+	public boolean solid()
+	{
+		return true;
 	}
 }

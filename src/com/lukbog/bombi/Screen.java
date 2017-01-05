@@ -59,20 +59,24 @@ public class Screen
 		this.yOffset = yOffset;
 	}
 	
-	public void renderPlayer(int xp, int yp, Sprite sprite)
+	public void renderPlayer(int xp, int yp, Sprite sprite, int flip)
 	{
 		xp -= xOffset;
 		yp -= yOffset;
 		for (int y = 0; y < 64; y++)
 		{
 			int ya = yp + y;
+			int ys = y;
+			if (flip == 2 || flip == 3)	ys = 63 - y;
 			for (int x = 0; x < 64; x++)
 			{
+				int xs = x;
+				if (flip == 1 || flip == 3)	xs = 63 - x;
 				int xa = xp + x;
 				if (xa < -64 || xa >= width || ya < 0 || ya >= height) break;
 				if (xa < 0) xa = 0;
-				int col = sprite.pixels[x + y * 64];
-				if (col != 0xFFff00FF) pixels[xa + ya * width] = col;
+				int color = sprite.pixels[xs + ys * 64];
+				if (color != 0xFFff00FF) pixels[xa + ya * width] = color;
 			}
 		}
 	}

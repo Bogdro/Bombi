@@ -16,5 +16,10 @@ public class WallTile extends Tile
 	{
 		screen.renderTile(x << 6,  y << 6, this);
 	}
+	
+	public boolean solid()
+	{
+		return true;
+	}
 
 }

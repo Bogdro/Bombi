@@ -12,13 +12,15 @@ import javax.swing.JFrame;
 
 import com.lukbog.bombi.Screen;
 import com.lukbog.bombi.input.Keyboard;
+import com.lukbog.bombi.level.Level;
+import com.lukbog.bombi.level.RandomLevel;
 
 class Game extends Canvas implements Runnable
 {
 	private static final long serialVersionUID = 1L;
 	private Thread thread;
 	private boolean running = false;
-	public static int width = 680;
+	public static int width = 640;
 	public static int height = width / 4 * 3;
 	private JFrame frame;
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
@@ -26,6 +28,7 @@ class Game extends Canvas implements Runnable
 	private Screen screen;
 	public static String title = "Bomberman";
 	private Keyboard key;
+	private Level level;
 	
 	public Game()
 	{
@@ -35,6 +38,7 @@ class Game extends Canvas implements Runnable
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
+		level = new RandomLevel(40, 30);
 		
 		addKeyListener(key);
 	}
@@ -112,8 +116,9 @@ class Game extends Canvas implements Runnable
 			createBufferStrategy(3);
 			return;
 		}
+
 		screen.clear();
-		screen.render(x, y);
+		level.render(x, y, screen);
 		
 		for (int i = 0; i < pixels.length; i++)
 		{

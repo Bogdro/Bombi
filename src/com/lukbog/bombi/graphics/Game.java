@@ -1,7 +1,6 @@
 package com.lukbog.bombi.graphics;
 
 import java.awt.Canvas;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
@@ -11,6 +10,7 @@ import java.awt.image.DataBufferInt;
 import javax.swing.JFrame;
 
 import com.lukbog.bombi.Screen;
+import com.lukbog.bombi.entity.mob.Player;
 import com.lukbog.bombi.input.Keyboard;
 import com.lukbog.bombi.level.Level;
 import com.lukbog.bombi.level.RandomLevel;
@@ -21,7 +21,7 @@ class Game extends Canvas implements Runnable
 	private Thread thread;
 	private boolean running = false;
 	public static int width = 640;
-	public static int height = width / 4 * 3;
+	public static int height = 480;
 	private JFrame frame;
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
@@ -29,6 +29,7 @@ class Game extends Canvas implements Runnable
 	public static String title = "Bomberman";
 	private Keyboard key;
 	private Level level;
+	private Player player;
 	
 	public Game()
 	{
@@ -38,7 +39,8 @@ class Game extends Canvas implements Runnable
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
-		level = new RandomLevel(40, 30);
+		level = new RandomLevel(20, 15);
+		player = new Player(key);
 		
 		addKeyListener(key);
 	}
@@ -97,15 +99,10 @@ class Game extends Canvas implements Runnable
 		stop();
 	}
 	
-	int x = 0, y = 0;
-	
 	public void update()
 	{
 		key.update();
-		if (key.up) y--;
-		if (key.down) y++;
-		if (key.left) x --;
-		if (key.right) x++;
+		player.update();
 	}
 	
 	public void render()
@@ -118,7 +115,7 @@ class Game extends Canvas implements Runnable
 		}
 
 		screen.clear();
-		level.render(x, y, screen);
+		level.render(player.x, player.y, screen);
 		
 		for (int i = 0; i < pixels.length; i++)
 		{
@@ -128,7 +125,6 @@ class Game extends Canvas implements Runnable
 		Graphics g = bs.getDrawGraphics();
 		
 		//Tutaj wrzucamy grafike
-		g.fillRect(0, 0, width, height);
 		g.drawImage(image,  0,  0,  getWidth(),  getHeight(), null);
 		//dispose() Usuwa grafiki z bufora po wyrenderowaniu (?)
 		g.dispose();

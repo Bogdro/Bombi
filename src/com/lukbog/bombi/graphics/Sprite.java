@@ -8,9 +8,9 @@ public class Sprite
 	private SpriteSheet sheet;
 	
 	public static Sprite player = new Sprite(16, 0, 0, SpriteSheet.playerModel);
-	public static Sprite wall = new Sprite(16, 1, 0, SpriteSheet.grass);
-	public static Sprite grass = new Sprite(16, 0, 0, SpriteSheet.grass);
-	public static Sprite voidSprite = new Sprite(16, 0xffffff); 
+	public static Sprite wall = new Sprite(32, 0, 0, SpriteSheet.spriteSheet);
+	public static Sprite grass = new Sprite(32, 1, 0, SpriteSheet.spriteSheet);
+	public static Sprite voidSprite = new Sprite(32, 0xffffff); 
 	
 	public Sprite(int size, int x, int y, SpriteSheet sheet)
 	{

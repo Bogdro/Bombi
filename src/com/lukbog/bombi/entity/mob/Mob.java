@@ -1,5 +1,6 @@
 package com.lukbog.bombi.entity.mob;
 
+import com.lukbog.bombi.Screen;
 import com.lukbog.bombi.entity.Entity;
 import com.lukbog.bombi.graphics.Sprite;
 
@@ -39,7 +40,7 @@ public abstract class Mob extends Entity
 		return false;
 	}
 	
-	public void render()
+	public void render(Screen screen)
 	{
 		
 	}

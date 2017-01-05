@@ -11,7 +11,7 @@ public class SpriteSheet
 	public final int SIZE;
 	public int[] pixels;
 	
-	public static SpriteSheet spriteSheet = new SpriteSheet("/textures/spritesheet64.png", 256);
+	public static SpriteSheet spriteSheet = new SpriteSheet("/textures/spritesheet64.png", 640);
 	
 	public SpriteSheet(String path, int size)
 	{

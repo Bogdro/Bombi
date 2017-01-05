@@ -23,7 +23,7 @@ public abstract class Mob extends Entity
 		if (dy > 0) dir = down;
 		if (dy < 0) dir = up;
 		
-		if (!collision())
+		if (!collision(dx, dy))
 		{
 			x += dx;
 			y += dy;
@@ -35,9 +35,11 @@ public abstract class Mob extends Entity
 		
 	}
 	
-	private boolean collision()
+	private boolean collision(int dx, int dy)
 	{
-		return false;
+		boolean solid = false;
+		if (level.getTile((x + dx) / 64, (y + dy) / 64 ).solid()) solid = true;
+		return solid;
 	}
 	
 	public void render(Screen screen)

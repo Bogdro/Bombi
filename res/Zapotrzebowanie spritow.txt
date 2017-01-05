@@ -1,0 +1,10 @@
+Gracz 1 
+Klocki niezniszczalne
+Klocki zniszczalne
+Gracz 2 (rekolor gracz 1)
+Gracz 3 (rekolor gracz 1)
+Gracz 4 (rekolor gracz 1)
+Dynamit 
+Wybuch
+Powerup (dynamit, oginik)
+GUI

@@ -21,7 +21,7 @@ class Game extends Canvas implements Runnable
 	private Thread thread;
 	private boolean running = false;
 	public static int width = 640;
-	public static int height = 480;
+	public static int height = 512;
 	private JFrame frame;
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
@@ -39,7 +39,7 @@ class Game extends Canvas implements Runnable
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
-		level = new RandomLevel(20, 15);
+		level = new RandomLevel(10, 8);
 		player = new Player(key);
 		
 		addKeyListener(key);

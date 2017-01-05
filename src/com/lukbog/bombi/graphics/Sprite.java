@@ -7,10 +7,10 @@ public class Sprite
 	public int[] pixels;
 	private SpriteSheet sheet;
 	
-	public static Sprite player = new Sprite(16, 0, 0, SpriteSheet.playerModel);
-	public static Sprite wall = new Sprite(32, 0, 0, SpriteSheet.spriteSheet);
-	public static Sprite grass = new Sprite(32, 1, 0, SpriteSheet.spriteSheet);
-	public static Sprite voidSprite = new Sprite(32, 0xffffff); 
+	public static Sprite player = new Sprite(64, 0, 0, SpriteSheet.spriteSheet);
+	public static Sprite wall = new Sprite(64, 0, 0, SpriteSheet.spriteSheet);
+	public static Sprite grass = new Sprite(64, 1, 0, SpriteSheet.spriteSheet);
+	public static Sprite voidSprite = new Sprite(64, 0xffffff); 
 	
 	public Sprite(int size, int x, int y, SpriteSheet sheet)
 	{

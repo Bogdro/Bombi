@@ -23,8 +23,8 @@ public class Player extends Mob
 		int dx = 0, dy = 0;
 		if (input.up) dy --;
 		if (input.down) dy ++;
-		if (input.right) dx --;
-		if (input.left) dx ++;
+		if (input.right) dx ++;
+		if (input.left) dx --;
 		
 		if (dx != 0 || dy != 0) move(dx, dy);
 	}

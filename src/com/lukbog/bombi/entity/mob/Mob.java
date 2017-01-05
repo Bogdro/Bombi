@@ -18,6 +18,12 @@ public abstract class Mob extends Entity
 	
 	public void move(int dx, int dy)
 	{
+		if (dx != 0 && dy != 0)
+		{
+			move (dx, 0);
+			move (0, dy);
+			return;
+		}
 		if (dx > 0) dir = right;
 		if (dx < 0) dir = left;
 		if (dy > 0) dir = down;
@@ -28,6 +34,7 @@ public abstract class Mob extends Entity
 			x += dx;
 			y += dy;
 		}
+		
 	}
 	
 	public void update()

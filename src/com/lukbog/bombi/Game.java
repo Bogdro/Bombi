@@ -1,4 +1,4 @@
-package com.lukbog.bombi.graphics;
+package com.lukbog.bombi;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
@@ -27,7 +27,7 @@ class Game extends Canvas implements Runnable
 	private BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
 	private int[] pixels = ((DataBufferInt)image.getRaster().getDataBuffer()).getData();
 	private Screen screen;
-	public static String title = "Bomberman";
+	public static String title = "Bombi";
 	private Keyboard key;
 	private Level level;
 	private Player player;

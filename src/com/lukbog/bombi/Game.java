@@ -106,6 +106,7 @@ class Game extends Canvas implements Runnable
 	{
 		key.update();
 		player.update();
+		level.update();
 	}
 	
 	public void render()

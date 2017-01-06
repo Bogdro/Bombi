@@ -22,6 +22,8 @@ public class Sprite
 	public static Sprite player_walking_up_1 =new Sprite(64, 2, 1, SpriteSheet.spriteSheet);
 	public static Sprite player_walking_up_2 =new Sprite(64, 3, 1, SpriteSheet.spriteSheet);
 	
+	public static Sprite tnt = new Sprite(64, 4, 1, SpriteSheet.spriteSheet);
+	
 	
 	public Sprite(int size, int x, int y, SpriteSheet sheet)
 	{

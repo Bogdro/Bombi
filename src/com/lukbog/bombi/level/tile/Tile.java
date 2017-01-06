@@ -11,6 +11,7 @@ public class Tile
 	public static Tile brick = new BrickTile(Sprite.brick);
 	public static Tile wall = new WallTile(Sprite.wall);
 	public static Tile voidTile = new VoidTile(Sprite.voidSprite);
+	public static Tile tnt = new tntTile(Sprite.tnt);
 	
 	public Tile(Sprite sprite)
 	{

@@ -1,7 +1,12 @@
 package com.lukbog.bombi.entity.mob;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.lukbog.bombi.Screen;
 import com.lukbog.bombi.entity.Entity;
+import com.lukbog.bombi.entity.Bombs.Bombs;
+import com.lukbog.bombi.entity.Bombs.TNT;
 import com.lukbog.bombi.graphics.Sprite;
 
 public abstract class Mob extends Entity
@@ -15,6 +20,8 @@ public abstract class Mob extends Entity
 	protected boolean moving = false;
 	//0 - góra, 1 - prawo, 2 dó³, 3 lewo
 	protected int up = 0, right = 1, down = 2, left = 3;
+	
+	protected List<Bombs> bombs = new ArrayList<Bombs>();
 	
 	public void move(int dx, int dy)
 	{
@@ -42,6 +49,16 @@ public abstract class Mob extends Entity
 		
 	}
 	
+	protected void plant(int x, int y, int dir)
+	{
+		//this.dir = dir;
+		Bombs b = new TNT(x, y, dir);
+		bombs.add(b);
+		level.add(b);
+	
+		
+	}
+	
 	private boolean collision(int dx, int dy)
 	{
 		boolean solid = false;
@@ -50,6 +67,7 @@ public abstract class Mob extends Entity
 			int xt = ((x + dx) + c % 2 * 31 + 16) / 64;
 			int yt = ((y + dy) + c / 2 * 61 + 2) / 64;
 			if (level.getTile(xt , yt).solid()) solid = true;
+			if (bombs.get(0).solid()) solid = true;  
 		}
 		
 		return solid;

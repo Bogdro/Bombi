@@ -7,7 +7,8 @@ import com.lukbog.bombi.level.Level;
 
 public abstract class Entity 
 {
-	public int x, y;
+	public int x;
+	public int y;
 	
 	private boolean removed = false;
 	protected Level level;
@@ -38,5 +39,10 @@ public abstract class Entity
 	public void init(Level level)
 	{
 		this.level = level;
+	}
+	
+	public boolean solid()
+	{
+		return false;
 	}
 }

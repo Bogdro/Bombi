@@ -2,6 +2,7 @@ package com.lukbog.bombi;
 
 import java.util.Random;
 
+import com.lukbog.bombi.entity.Bombs.Bombs;
 import com.lukbog.bombi.graphics.Sprite;
 import com.lukbog.bombi.level.tile.Tile;
 
@@ -49,6 +50,24 @@ public class Screen
 				if (xa < -tile.sprite.SIZE || xa >= width || ya < 0 || ya >= height) break;
 				if (xa < 0) xa = 0;
 				pixels[xa + ya * width] = tile.sprite.pixels[x + y * tile.sprite.SIZE];
+			}
+		}
+	}
+	
+	public void renderBombs(int xp, int yp, Bombs b)
+	{
+		xp -= xOffset;
+		yp -= yOffset;
+		for (int y = 0; y < b.getSpriteSize(); y++)
+		{
+			int ya = yp + y;
+			for (int x = 0; x < b.getSpriteSize(); x++)
+			{
+				int xa = xp + x;
+				if (xa < -b.getSpriteSize() || xa >= width || ya < 0 || ya >= height) break;
+				if (xa < 0) xa = 0;
+				int col = b.getSprite().pixels[x + y * b.getSprite().SIZE];
+				if (col != 0xffff00ff)	pixels[xa + ya * width] = col;
 			}
 		}
 	}

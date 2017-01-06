@@ -1,6 +1,12 @@
 package com.lukbog.bombi.level;
 
+
+
+import java.util.ArrayList;
+import java.util.List;
+
 import com.lukbog.bombi.Screen;
+import com.lukbog.bombi.entity.Entity;
 import com.lukbog.bombi.level.tile.Tile;
 
 public class Level 
@@ -8,6 +14,7 @@ public class Level
 	protected int width, height;
 	protected int[] tileInt;
 	protected int[] tiles;
+	private List<Entity> entities = new ArrayList<Entity>();
 	
 	public Level(int width, int height)
 	{
@@ -35,13 +42,21 @@ public class Level
 	
 	public void update()
 	{
-		
+		for (int i = 0; i < entities.size(); i++)
+		{
+			entities.get(i).update();
+		}
 	}
 	
 	@SuppressWarnings("unused")
 	private void time()
 	{
 		
+	}
+	
+	public void add(Entity e)
+	{
+		entities.add(e);
 	}
 	
 	public void render(int xScroll, int yScroll, Screen screen)
@@ -56,11 +71,16 @@ public class Level
 		{
 			for (int x = x0; x < x1; x++)
 			{
-				getTile(x, y).render(x, y, screen);
+				getTile(x, y).render(x, y, screen);	
 				
 			}
 		}
+		for (int i = 0; i <entities.size(); i++){
+			entities.get(i).render(screen);
+		}
 	}
+	
+	
 	
 	public Tile getTile(int x, int y)
 	{
@@ -69,8 +89,9 @@ public class Level
 		// Randomowe_klocki = FFFFFF;
 		
 		if (x < 0 || y < 0 || x >= width || y >= height) return Tile.voidTile;
-		if (tiles[x + y * width] == 0xFF000000) return Tile.wall;
-		//if (tiles[x + y * width] == 1) return Tile.wall;
+		if (tiles[x + y * width] == 0xFF000000 )  return Tile.wall;
+		if (tiles[x + y * width] == 0xFFFFFFFF)  return Tile.brick;
+		if (tiles[x + y * width] == 0xFFFFFFF1) return Tile.voidTile;
 		return Tile.voidTile;
 	}
 }

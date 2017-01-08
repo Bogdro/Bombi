@@ -26,10 +26,23 @@ public class TNT extends Bombs {
 	
 	public void render(Screen screen)
 	{
-		if (dir == 3) screen.renderBombs(x-64 , y , this);
+		/*if (dir == 3) screen.renderBombs(x-64 , y , this);
 		if (dir == 1) screen.renderBombs(x+64 , y , this);
 		if (dir == 0) screen.renderBombs(x , y - 64, this);
 		if (dir == 2) screen.renderBombs(x , y + 64, this);
+		*/
+		
+		int xtt = 0, ytt = 0;
+		
+		double xt = (x/64.0);
+		double yt = (y/64.0);
+		
+		if (xt >=  (int) xt + 0.5) xtt = (int) xt + 1;
+		if (xt < (int) xt + 0.5) xtt = (int) xt;
+		if (yt >=  (int) yt + 0.5) 	ytt = (int) yt + 1;
+		if (yt < (int) yt + 0.5) ytt = (int) yt;
+	
+		screen.renderBombs(xtt * 64, ytt * 64, this);
 	}
 	
 	public boolean solid()

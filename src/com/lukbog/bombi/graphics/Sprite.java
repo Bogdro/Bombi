@@ -7,7 +7,7 @@ public class Sprite
 	public int[] pixels;
 	private SpriteSheet sheet;
 	
-	public static Sprite wall = new Sprite(64, 0, 0, SpriteSheet.spriteSheet);
+	public static Sprite wall = new Sprite(64, 4, 2, SpriteSheet.spriteSheet);
 	public static Sprite brick = new Sprite(64, 1, 0, SpriteSheet.spriteSheet);
 	public static Sprite voidSprite = new Sprite(64, 0xff11ff); 
 	
@@ -19,8 +19,13 @@ public class Sprite
 	public static Sprite player_walking_down_1 = new Sprite(64, 0, 1, SpriteSheet.spriteSheet);
 	public static Sprite player_walking_down_2 = new Sprite(64, 1, 1, SpriteSheet.spriteSheet);
 	
-	public static Sprite player_walking_up_1 =new Sprite(64, 2, 1, SpriteSheet.spriteSheet);
-	public static Sprite player_walking_up_2 =new Sprite(64, 3, 1, SpriteSheet.spriteSheet);
+	public static Sprite player_walking_up_1 = new Sprite(64, 2, 1, SpriteSheet.spriteSheet);
+	public static Sprite player_walking_up_2 = new Sprite(64, 3, 1, SpriteSheet.spriteSheet);
+	
+	public static Sprite player_idle_1 = new Sprite(64, 2, 0, SpriteSheet.spriteSheet);
+	public static Sprite player_idle_2 = new Sprite(64, 3, 0, SpriteSheet.spriteSheet);
+	public static Sprite player_idle_3 = new Sprite(64, 4, 0, SpriteSheet.spriteSheet);
+	public static Sprite player_idle_4 = new Sprite(64, 5, 0, SpriteSheet.spriteSheet);
 	
 	public static Sprite tnt = new Sprite(64, 4, 1, SpriteSheet.spriteSheet);
 	

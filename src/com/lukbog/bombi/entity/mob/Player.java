@@ -10,6 +10,7 @@ public class Player extends Mob
 	private Sprite sprite;
 	private int anim = 0 ;
 	private boolean walking = false;
+	private int flip = 1;
 	
 	public Player(Keyboard input)
 	{
@@ -50,12 +51,13 @@ public class Player extends Mob
 	
 	public void render(Screen screen)
 	{
-		int flip =0;
-		if (dir == left) 
-			{
-				sprite = Sprite.player_walking_side_1;
-				if (walking)
+		//int flip = 0;
+		if(walking){
+			if (dir == left) 
 				{
+					flip = 0;
+					sprite = Sprite.player_walking_side_1;
+					
 					if (anim % 40 > 10 ) 
 					{
 						 sprite = Sprite.player_walking_side_2;
@@ -67,14 +69,13 @@ public class Player extends Mob
 					if (anim % 40 > 30)
 					{
 						sprite = Sprite.player_walking_side_4;
+					
 					}
 				}
-			}
-		if (dir == up) 
+			if (dir == up) 
 			{
-				sprite = Sprite.player_walking_up_1;
-				if (walking)
-				{
+					sprite = Sprite.player_walking_up_1;
+					
 					if (anim % 20 > 10)
 					{
 						sprite = Sprite.player_walking_up_2;
@@ -83,13 +84,11 @@ public class Player extends Mob
 					{
 						sprite = Sprite.player_walking_up_1;
 					}
-				}
 			}
-		if (dir == down) 
+			if (dir == down) 
 			{
-				sprite = Sprite.player_walking_down_1;
-				if (walking)
-				{
+					sprite = Sprite.player_walking_down_1;
+					
 					if (anim % 20 > 10)
 					{
 						sprite = Sprite.player_walking_down_2;
@@ -98,14 +97,11 @@ public class Player extends Mob
 					{
 						sprite = Sprite.player_walking_down_1;
 					}
-				}
 			}
-		if (dir == right) 
+			if (dir == right) 
 			{
-			flip = 1;
-			sprite = Sprite.player_walking_side_1;
-			if (walking)
-			{
+				flip = 1;
+				sprite = Sprite.player_walking_side_1;
 				if (anim % 40 > 10 ) 
 				{
 					 sprite = Sprite.player_walking_side_2;
@@ -119,7 +115,22 @@ public class Player extends Mob
 					sprite = Sprite.player_walking_side_4;
 				}
 			}
+		}
+		else{
+			sprite = Sprite.player_idle_1;
+			if (anim % 40 > 10 ) 
+			{
+				 sprite = Sprite.player_idle_2;
+			} 
+			if (anim % 40 > 20)
+			{
+				sprite = Sprite.player_idle_3;
 			}
+			if (anim % 40 > 30)
+			{
+				sprite = Sprite.player_idle_4;
+			}
+		}
 			
 		screen.renderPlayer(x, y, sprite, flip);
 	}

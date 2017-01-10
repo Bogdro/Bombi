@@ -33,8 +33,7 @@ public class Player extends Mob
 		if (input.left) dx --;
 		if (input.tnt) 
 			{
-			//System.out.println("IKS : " + this.x); 
-			plant(this.x, this.y, this.dir);
+				plant(this.x, this.y, this.dir);
 			}
 		if (anim < 7500) anim++; else anim = 0;
 		if (dx != 0 || dy != 0) 

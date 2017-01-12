@@ -16,13 +16,9 @@ public class TNT extends Bombs {
 
 	public void update()
 	{
-		plant();
+
 	}
 	
-	protected void plant()
-	{
-		
-	}
 	
 	public void render(Screen screen)
 	{

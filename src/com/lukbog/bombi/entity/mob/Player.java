@@ -1,5 +1,7 @@
 package com.lukbog.bombi.entity.mob;
 
+import java.awt.event.ActionEvent;
+
 import com.lukbog.bombi.Screen;
 import com.lukbog.bombi.graphics.Sprite;
 import com.lukbog.bombi.input.Keyboard;
@@ -132,5 +134,11 @@ public class Player extends Mob
 		}
 			
 		screen.renderPlayer(x, y, sprite, flip);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 } 

@@ -24,7 +24,7 @@ public abstract class Mob extends Entity implements ActionListener
 	//0 - góra, 1 - prawo, 2 dó³, 3 lewo
 	protected int up = 0, right = 1, down = 2, left = 3;
 	public boolean bombPlanted = false;
-	public Timer timer = new Timer(1000, new MyTimerActionListener());
+	//public Timer timer = new Timer(1000, new MyTimerActionListener());
 	
 	protected List<Bombs> bombs = new ArrayList<Bombs>();
 	
@@ -60,7 +60,7 @@ public abstract class Mob extends Entity implements ActionListener
 		{	
 			if (bombs.size() == 0)
 			{
-				timer.start()
+				//timer.start();
 				Bombs b = new TNT(x, y, dir);
 				System.out.println("Dodalem nowa bombke po raz pierwszy");
 				bombPlanted = true;

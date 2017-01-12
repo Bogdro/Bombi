@@ -9,7 +9,7 @@ public abstract class Bombs extends Entity
 	protected Sprite sprite;
 	protected int capacity;
 	protected int dir;
-
+	protected long now;
 
 	
 	public Bombs(int x, int y, int dir)

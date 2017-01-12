@@ -12,6 +12,7 @@ public class TNT extends Bombs {
 		this.x = x;
 		this.y = y;
 		this.dir = dir;
+		this.now = System.currentTimeMillis();
 	}
 
 	public void update()
@@ -37,7 +38,13 @@ public class TNT extends Bombs {
 		if (xt < (int) xt + 0.5) xtt = (int) xt;
 		if (yt >=  (int) yt + 0.5) 	ytt = (int) yt + 1;
 		if (yt < (int) yt + 0.5) ytt = (int) yt;
-	
+		if (System.currentTimeMillis() - now < 5000){
+		}
+		else{
+			now = System.currentTimeMillis();
+			System.out.println("koniec");
+			Explosion expl = new Explosion(this.x, this.y, this.dir);
+		}
 		screen.renderBombs(xtt * 64, ytt * 64, this);
 	}
 	

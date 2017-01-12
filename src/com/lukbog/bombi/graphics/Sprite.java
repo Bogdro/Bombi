@@ -32,14 +32,14 @@ public class Sprite
 	public static Sprite player_idle_3 = new Sprite(64, 2, 0+numergracza*2, SpriteSheet.spriteSheet);
 	public static Sprite player_idle_4 = new Sprite(64, 3, 0+numergracza*2, SpriteSheet.spriteSheet);
 	
-	public static Sprite explosion_1 = new Sprite(64, 4, 1, SpriteSheet.spriteSheet);
-	public static Sprite explosion_2 = new Sprite(64, 5, 1, SpriteSheet.spriteSheet);
-	public static Sprite explosion_3 = new Sprite(64, 6, 1, SpriteSheet.spriteSheet);
-	public static Sprite explosion_4 = new Sprite(64, 7, 1, SpriteSheet.spriteSheet);
-	public static Sprite explosion_5 = new Sprite(64, 8, 1, SpriteSheet.spriteSheet);
-	public static Sprite explosion_6 = new Sprite(64, 9, 1, SpriteSheet.spriteSheet);
-	public static Sprite explosion_7 = new Sprite(64, 0, 2, SpriteSheet.spriteSheet);
-	public static Sprite explosion_8 = new Sprite(64, 1, 2, SpriteSheet.spriteSheet);
+	public static Sprite explosion_1 = new Sprite(64, 0, 8, SpriteSheet.spriteSheet);
+	public static Sprite explosion_2 = new Sprite(64, 1, 8, SpriteSheet.spriteSheet);
+	public static Sprite explosion_3 = new Sprite(64, 2, 8, SpriteSheet.spriteSheet);
+	public static Sprite explosion_4 = new Sprite(64, 3, 8, SpriteSheet.spriteSheet);
+	public static Sprite explosion_5 = new Sprite(64, 4, 8, SpriteSheet.spriteSheet);
+	public static Sprite explosion_6 = new Sprite(64, 5, 8, SpriteSheet.spriteSheet);
+	public static Sprite explosion_7 = new Sprite(64, 6, 8, SpriteSheet.spriteSheet);
+	public static Sprite explosion_8 = new Sprite(64, 7, 8, SpriteSheet.spriteSheet);
 	
 	
 	public Sprite(int size, int x, int y, SpriteSheet sheet)

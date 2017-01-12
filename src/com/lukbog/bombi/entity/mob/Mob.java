@@ -9,10 +9,11 @@ import javax.swing.Timer;
 import com.lukbog.bombi.Screen;
 import com.lukbog.bombi.entity.Entity;
 import com.lukbog.bombi.entity.Bombs.Bombs;
+import com.lukbog.bombi.entity.Bombs.Explosion;
 import com.lukbog.bombi.entity.Bombs.TNT;
 import com.lukbog.bombi.graphics.Sprite;
 
-public abstract class Mob extends Entity implements ActionListener
+public abstract class Mob extends Entity //implements ActionListener
 {
 	/**
 	 * Klasa obs³uguj¹ca postacie mobilne
@@ -61,7 +62,11 @@ public abstract class Mob extends Entity implements ActionListener
 			if (bombs.size() == 0)
 			{
 				//timer.start();
+<<<<<<< HEAD
 				Bombs b = new TNT(x, y, dir);
+=======
+				Bombs b = new Explosion(x, y, dir);
+>>>>>>> e6a2bd15b2be795417ae2f19c642d228147e406a
 				System.out.println("Dodalem nowa bombke po raz pierwszy");
 				bombPlanted = true;
 				bombs.add(b);

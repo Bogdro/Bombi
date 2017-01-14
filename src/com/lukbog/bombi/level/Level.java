@@ -7,6 +7,8 @@ import java.util.List;
 
 import com.lukbog.bombi.Screen;
 import com.lukbog.bombi.entity.Entity;
+import com.lukbog.bombi.entity.Bombs.Bombs;
+import com.lukbog.bombi.entity.Explosion.Explosion;
 import com.lukbog.bombi.level.tile.Tile;
 
 public class Level 
@@ -15,9 +17,12 @@ public class Level
 	protected int[] tileInt;
 	protected int[] tiles;
 	private List<Entity> entities = new ArrayList<Entity>();
+	public static List<Bombs> bomb = new ArrayList<Bombs>();
+	public static List<Explosion> explosion = new ArrayList<Explosion>();
 	
 	public Level(int width, int height)
 	{
+		bomb = new ArrayList<Bombs>();
 		this.width = width;
 		this.height = height;
 		tileInt = new int[width * height];
@@ -42,9 +47,12 @@ public class Level
 	
 	public void update()
 	{
-		for (int i = 0; i < entities.size(); i++)
+		for (int i = 0; i < bomb.size(); i++)
 		{
-			entities.get(i).update();
+			bomb.get(i).update();
+		}
+		for (int i = 0; i <explosion.size(); i++){
+			explosion.get(i).update();
 		}
 	}
 	
@@ -54,9 +62,50 @@ public class Level
 		
 	}
 	
+	public boolean tileCollision(int x, int y, int dx, int dy, int size)
+	{
+		boolean solid = false;
+		for (int c = 0; c < 4; c++)
+		{
+			int xt = ((x + dx) + c % 2 * size) / 64;
+			int yt = ((y + dy) + c / 2 * size) / 64;
+			
+			if (getTile(xt , yt).solid()) solid = true;
+	
+		}
+		
+		return solid;
+	}
+	
+	public void addBomb(Bombs bomb) 
+	{
+		this.bomb.add(bomb);
+		//System.out.println("Bomba");
+	}
+	
+	public void addExplosion(Explosion exp) 
+	{
+		this.explosion.add(exp);
+		//System.out.println("Bomba");
+	}
+
 	public void add(Entity e)
 	{
 		entities.add(e);
+	}
+	
+	public void set(int index, Entity e)
+	{
+		entities.set(index, e);
+	}
+	
+	public void remove(int index)
+	{
+		entities.remove(index);
+	}
+	public void get(int index)
+	{
+		System.out.println(entities.get(0));
 	}
 	
 	public void render(int xScroll, int yScroll, Screen screen)
@@ -75,8 +124,11 @@ public class Level
 				
 			}
 		}
-		for (int i = 0; i <entities.size(); i++){
-			entities.get(i).render(screen);
+		for (int i = 0; i <bomb.size(); i++){
+			bomb.get(i).render(screen);
+		}
+		for (int i = 0; i <explosion.size(); i++){
+			explosion.get(i).render(screen);
 		}
 	}
 	

@@ -3,6 +3,7 @@ package com.lukbog.bombi.entity;
 import java.util.Random;
 
 import com.lukbog.bombi.Screen;
+import com.lukbog.bombi.graphics.Sprite;
 import com.lukbog.bombi.level.Level;
 
 public abstract class Entity 
@@ -10,8 +11,9 @@ public abstract class Entity
 	public int x;
 	public int y;
 	
-	private boolean removed = false;
+	public boolean removed = false;
 	protected Level level;
+	protected Sprite sprite;
 	protected final Random random = new Random();
 
 	public void update()
@@ -44,5 +46,15 @@ public abstract class Entity
 	public boolean solid()
 	{
 		return false;
+	}
+	
+	public Sprite getSprite()
+	{
+		return sprite;
+	}
+	
+	public int getSpriteSize()
+	{
+		return sprite.SIZE;
 	}
 }

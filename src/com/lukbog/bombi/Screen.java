@@ -3,6 +3,7 @@ package com.lukbog.bombi;
 import java.util.Random;
 
 import com.lukbog.bombi.entity.Bombs.Bombs;
+import com.lukbog.bombi.entity.Explosion.Explosion;
 import com.lukbog.bombi.graphics.Sprite;
 import com.lukbog.bombi.level.tile.Tile;
 
@@ -24,7 +25,7 @@ public class Screen
 		
 		for (int i = 0; i < mapSize*mapSize; i++)
 		{
-			tiles[i] = random.nextInt(0xffffff);
+			tiles[i] = random.nextInt(0xFF00FF);
 			tiles[0] = 0;
 		}
 	}
@@ -34,6 +35,24 @@ public class Screen
 		for (int i = 0; i < pixels.length; i++)
 		{
 			pixels[i] = 0;
+		}
+	}
+	public void renderSprite(int xp, int yp, Sprite sprite, boolean fixed)
+	{
+		if (fixed)
+		{
+			xp -= xOffset;
+			yp -= yOffset;
+		}
+		for (int y = 0; y < sprite.getHeight(); y++ )
+		{
+			int ya = y + yp;
+			for (int x = 0; x < sprite.getWidth(); x++ )
+			{
+				int xa = x + xp;
+				if( xa < 0 || xa >= width || ya < 0 || ya >= height) continue;
+				pixels[x + y * width] = sprite.pixels[x + y * sprite.getWidth()];
+			}
 		}
 	}
 	
@@ -49,7 +68,8 @@ public class Screen
 				int xa = xp + x;
 				if (xa < -tile.sprite.SIZE || xa >= width || ya < 0 || ya >= height) break;
 				if (xa < 0) xa = 0;
-				pixels[xa + ya * width] = tile.sprite.pixels[x + y * tile.sprite.SIZE];
+				int col = tile.sprite.pixels[x + y * tile.sprite.SIZE];
+				if (col != 0xFFFF00FF) pixels[xa + ya * width] = col;
 			}
 		}
 	}
@@ -67,7 +87,25 @@ public class Screen
 				if (xa < -b.getSpriteSize() || xa >= width || ya < 0 || ya >= height) break;
 				if (xa < 0) xa = 0;
 				int col = b.getSprite().pixels[x + y * b.getSprite().SIZE];
-				if (col != 0xffff00ff)	pixels[xa + ya * width] = col;
+				if (col != 0xFFFF00FF)	pixels[xa + ya * width] = col;
+			}
+		}
+	}
+	
+	public void renderExplosion(int xp, int yp, Explosion b)
+	{
+		xp -= xOffset;
+		yp -= yOffset;
+		for (int y = 0; y < b.getSpriteSize(); y++)
+		{
+			int ya = yp + y;
+			for (int x = 0; x < b.getSpriteSize(); x++)
+			{
+				int xa = xp + x;
+				if (xa < -b.getSpriteSize() || xa >= width || ya < 0 || ya >= height) break;
+				if (xa < 0) xa = 0;
+				int col = b.getSprite().pixels[x + y * b.getSprite().SIZE];
+				if (col != 0xFFFF00FF)	pixels[xa + ya * width] = col;
 			}
 		}
 	}
@@ -95,7 +133,7 @@ public class Screen
 				if (xa < -64 || xa >= width || ya < 0 || ya >= height) break;
 				if (xa < 0) xa = 0;
 				int color = sprite.pixels[xs + ys * 64];
-				if (color != 0xFFff00FF) pixels[xa + ya * width] = color;
+				if (color != 0xFFFF00FF) pixels[xa + ya * width] = color;
 			}
 		}
 	}

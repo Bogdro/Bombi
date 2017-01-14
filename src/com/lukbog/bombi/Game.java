@@ -9,8 +9,8 @@ import java.awt.image.DataBufferInt;
 
 import javax.swing.JFrame;
 
-import com.lukbog.bombi.Screen;
 import com.lukbog.bombi.entity.mob.Player;
+import com.lukbog.bombi.entity.mob.Player2;
 import com.lukbog.bombi.input.Keyboard;
 import com.lukbog.bombi.level.FirstLevel;
 import com.lukbog.bombi.level.Level;
@@ -31,6 +31,7 @@ class Game extends Canvas implements Runnable
 	private Keyboard key;
 	private Level level;
 	private Player player;
+	private Player2 player2;
 	
 	public Game()
 	{
@@ -42,8 +43,12 @@ class Game extends Canvas implements Runnable
 		key = new Keyboard();
 		level = new FirstLevel("/levels/firstLevel.png");
 		TileCoordinate playerSpawn = new TileCoordinate(1,1);
-		player = new Player(playerSpawn.x(), playerSpawn.y(),key);
+		TileCoordinate player2Spawn = new TileCoordinate(8,1);
+		player = new Player(playerSpawn.x(), playerSpawn.y(),key, level);
+		player2 = new Player2(player2Spawn.x(), player2Spawn.y(),key, level);
 		player.init(level);
+		player2.init(level);
+		
 		
 		addKeyListener(key);
 	}
@@ -106,6 +111,7 @@ class Game extends Canvas implements Runnable
 	{
 		key.update();
 		player.update();
+		player2.update();
 		level.update();
 	}
 	
@@ -124,6 +130,7 @@ class Game extends Canvas implements Runnable
 		
 		level.render(xScroll, yScroll, screen);
 		player.render(screen);
+		player2.render(screen);
 		
 		for (int i = 0; i < pixels.length; i++)
 		{

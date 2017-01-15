@@ -8,7 +8,7 @@ public class Tile
 	public int x, y;
 	public Sprite sprite; 
 	
-	public static Tile brick = new BrickTile(Sprite.brick);
+	public static Tile brick = new CarbonTile(Sprite.carbon);
 	public static Tile wall = new WallTile(Sprite.wall);
 	public static Tile voidTile = new VoidTile(Sprite.voidSprite);
 	public static Tile tnt = new tntTile(Sprite.tnt);
@@ -24,6 +24,11 @@ public class Tile
 	}
 	
 	public boolean solid()
+	{
+		return false;
+	}
+	
+	public boolean breakable()
 	{
 		return false;
 	}

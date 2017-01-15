@@ -19,6 +19,8 @@ public class Level
 	private List<Entity> entities = new ArrayList<Entity>();
 	public static List<Bombs> bomb = new ArrayList<Bombs>();
 	public static List<Explosion> explosion = new ArrayList<Explosion>();
+	public static List<Integer> brokenCarbonX = new ArrayList<Integer>();
+	public static List<Integer> brokenCarbonY = new ArrayList<Integer>();
 	
 	public Level(int width, int height)
 	{
@@ -139,11 +141,25 @@ public class Level
 		// Sciana = 000000;
 		// Spawny = FFD000;
 		// Randomowe_klocki = FFFFFF;
-		
-		if (x < 0 || y < 0 || x >= width || y >= height) return Tile.voidTile;
-		if (tiles[x + y * width] == 0xFF000000 )  return Tile.wall;
-		if (tiles[x + y * width] == 0xFFFFFFFF)  return Tile.brick;
-		if (tiles[x + y * width] == 0xFFFFFFF1) return Tile.voidTile;
-		return Tile.voidTile;
+		Tile t = Tile.voidTile;
+		if (x < 0 || y < 0 || x >= width || y >= height) t = Tile.voidTile;
+		else if (tiles[x + y * width] == 0xFF000000 )  t = Tile.wall;
+		else if (tiles[x + y * width] == 0xFFFFFFFF)  t = Tile.brick;
+		else if (tiles[x + y * width] == 0xFFFFFFF1) t = Tile.voidTile;
+		for (int i = 0; i < brokenCarbonX.size(); i++)
+		{
+			if(brokenCarbonX.get(i) == x && brokenCarbonY.get(i) == y) 
+				{
+			//	System.out.println("HELO");
+				t = Tile.voidTile;
+				}
+		}
+		return t;
+	}
+	
+	public void brokenCarbon(int x, int y)
+	{
+		brokenCarbonX.add(x);
+		brokenCarbonY.add(y);
 	}
 }

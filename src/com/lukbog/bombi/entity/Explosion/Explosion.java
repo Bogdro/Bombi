@@ -20,11 +20,6 @@ public class Explosion extends Entity {
 		this.level = level;
 		this.range = range;
 		System.out.println("nowa explosia");
-		Sprite[] sprites = {Sprite.explosion_1,Sprite.explosion_2, Sprite.explosion_3,
-				Sprite.explosion_4, Sprite.explosion_5, Sprite.explosion_6, Sprite.explosion_7,
-				Sprite.explosion_8,Sprite.voidSprite};
-		//sprite = this.sprites[i];
-		//this.now = System.currentTimeMillis();
 	}
 	
 	public void render(Screen screen)
@@ -63,13 +58,33 @@ public class Explosion extends Entity {
 		}
 		for (int i = 0; i <= range; i++)
 		{
-			screen.renderExplosion(x+64*i, y, this);
+			if (!level.getTile((x >> 6 ) + i, y >> 6).solid()) screen.renderExplosion(x+64*i, y, this);
+			if (level.getTile((x >> 6 ) + i, y >> 6).solid() && !level.getTile((x >> 6 ) + i, y >> 6).breakable()) continue;
+			if (level.getTile((x >> 6 ) + i, y >> 6).breakable()) screen.renderExplosion(x+64*i, y, this);
+			
+			if (!level.getTile((x >> 6 ) - i, y >> 6).solid()) screen.renderExplosion(x-64*i, y, this);
+			if (level.getTile((x >> 6 ) - i, y >> 6).solid() && !level.getTile((x >> 6 ) - i, y >> 6).breakable()) continue;
+			if (level.getTile((x >> 6 ) - i, y >> 6).breakable()) screen.renderExplosion(x- 64*i, y, this);
+			
+			if (!level.getTile((x >> 6 ), y + i>> 6).solid()) screen.renderExplosion(x, y+64*i, this);
+			if (level.getTile((x >> 6 ), y + i>> 6).solid() && !level.getTile((x >> 6 ), (y >> 6) - i).breakable()) continue;
+			if (level.getTile((x >> 6 ), y + i>> 6).breakable()) screen.renderExplosion(x , y+64*i, this);
+			
+			if (!level.getTile((x >> 6 ), y - i >> 6).solid()) screen.renderExplosion(x, y-64*i, this);
+			if (level.getTile((x >> 6 ), y - i >> 6).solid() && !level.getTile((x >> 6 ), (y >> 6) - i).breakable()) continue;
+			if (level.getTile((x >> 6 ), y - i >> 6).breakable()) screen.renderExplosion(x, y-64*i, this);
+		
 			if(counter == 25)
 			{
-				System.out.println("HEJO");
+				if (level.getTile((x >> 6 ) + i, y >> 6).breakable()) level.brokenCarbon((x >> 6) +i , y >> 6);
+				if (level.getTile((x >> 6 ) - i, y >> 6).breakable()) level.brokenCarbon((x >> 6) -i , y >> 6);
+				if (level.getTile((x >> 6 ), (y >> 6) + i).breakable()) level.brokenCarbon((x >> 6 ), (y >> 6) + i);
+				if (level.getTile((x >> 6 ), (y >> 6) - i).breakable()) level.brokenCarbon((x >> 6 ), (y >> 6) - i);
 				remove();
 			}
 		}
+		//System.out.println(level.getTile((x >> 6 ) + 1, y >> 6));
+		//if (level.getTile((x >> 6 ) + 1, y >> 6).breakable()) System.out.println("Wungiel");
 		
 	}
 	
@@ -78,13 +93,6 @@ public class Explosion extends Entity {
 		removed = true;
 	}
 	public void update(){
-	/*	if (System.currentTimeMillis() - now > 100){
-			i++;
-			if(i<sprites.length){
-				sprite = this.sprites[i];
-			}
-			now = System.currentTimeMillis();
-		}*/
 		counter ++;
 		
 		if (anim < 7500) 

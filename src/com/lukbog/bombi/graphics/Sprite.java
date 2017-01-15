@@ -11,7 +11,7 @@ public class Sprite
 	private static int numergracza = 1;
 	
 	public static Sprite wall = new Sprite(64, 4, 1, SpriteSheet.spriteSheet);
-	public static Sprite brick = new Sprite(64, 2, 1, SpriteSheet.spriteSheet);
+	public static Sprite carbon = new Sprite(64, 2, 1, SpriteSheet.spriteSheet);
 	public static Sprite voidSprite = new Sprite(64, 0xff2D2D2D); 
 	public static Sprite tnt = new Sprite(64, 5, 1, SpriteSheet.spriteSheet);
 	

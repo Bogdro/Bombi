@@ -3,9 +3,9 @@ package com.lukbog.bombi.level.tile;
 import com.lukbog.bombi.Screen;
 import com.lukbog.bombi.graphics.Sprite;
 
-public class BrickTile extends Tile
+public class CarbonTile extends Tile
 {
-	public BrickTile(Sprite sprite) 
+	public CarbonTile(Sprite sprite) 
 	{
 		super(sprite);
 	}
@@ -16,6 +16,11 @@ public class BrickTile extends Tile
 	}
 	
 	public boolean solid()
+	{
+		return true;
+	}
+	
+	public boolean breakable()
 	{
 		return true;
 	}

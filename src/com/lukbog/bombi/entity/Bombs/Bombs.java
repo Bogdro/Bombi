@@ -38,11 +38,22 @@ public class Bombs extends Entity
 		if (anim < 7500) anim ++;
 		else anim = 0;
 		
-		if (bombCounter > 600)
+		if (bombCounter > 200)
 		{
 			//System.out.println("Wybuchh");
-			Level.explosion.add(new Explosion(x, y, 1, Sprite.explosion_1, level));
+			
+			int xtt = 0, ytt = 0;
+			
+			double xt = (x/64.0);
+			double yt = (y/64.0);
+			if (xt >=  (int) xt + 0.5) xtt = (int) xt + 1;
+			if (xt < (int) xt + 0.5) xtt = (int) xt;
+			if (yt >=  (int) yt + 0.5) 	ytt = (int) yt + 1;
+			if (yt < (int) yt + 0.5) ytt = (int) yt;
+			
+			Level.explosion.add(new Explosion(xtt * 64, ytt * 64, 2, Sprite.explosion_1, level));
 			remove();
+			
 		}
 	}
 	

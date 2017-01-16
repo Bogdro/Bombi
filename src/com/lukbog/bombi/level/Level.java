@@ -19,12 +19,14 @@ public class Level
 	private List<Entity> entities = new ArrayList<Entity>();
 	public static List<Bombs> bomb = new ArrayList<Bombs>();
 	public static List<Explosion> explosion = new ArrayList<Explosion>();
+	public static List<Bombs> bomb2 = new ArrayList<Bombs>();
+	public static List<Explosion> explosion2 = new ArrayList<Explosion>();
 	public static List<Integer> brokenCarbonX = new ArrayList<Integer>();
 	public static List<Integer> brokenCarbonY = new ArrayList<Integer>();
 	
 	public Level(int width, int height)
 	{
-		bomb = new ArrayList<Bombs>();
+		//bomb = new ArrayList<Bombs>();
 		this.width = width;
 		this.height = height;
 		tileInt = new int[width * height];
@@ -56,6 +58,13 @@ public class Level
 		for (int i = 0; i <explosion.size(); i++){
 			explosion.get(i).update();
 		}
+		for (int i = 0; i < bomb2.size(); i++)
+		{
+			bomb2.get(i).update();
+		}
+		for (int i = 0; i <explosion2.size(); i++){
+			explosion2.get(i).update();
+		}
 	}
 	
 	@SuppressWarnings("unused")
@@ -81,14 +90,22 @@ public class Level
 	
 	public void addBomb(Bombs bomb) 
 	{
-		this.bomb.add(bomb);
-		//System.out.println("Bomba");
+		Level.bomb.add(bomb);
 	}
 	
 	public void addExplosion(Explosion exp) 
 	{
-		this.explosion.add(exp);
-		//System.out.println("Bomba");
+		Level.explosion.add(exp);
+	}
+	
+	public void addBomb2(Bombs bomb) 
+	{
+		Level.bomb2.add(bomb);
+	}
+	
+	public void addExplosion2(Explosion exp) 
+	{
+		Level.explosion2.add(exp);
 	}
 
 	public void add(Entity e)
@@ -132,6 +149,12 @@ public class Level
 		for (int i = 0; i <explosion.size(); i++){
 			explosion.get(i).render(screen);
 		}
+		for (int i = 0; i <bomb2.size(); i++){
+			bomb2.get(i).render(screen);
+		}
+		for (int i = 0; i <explosion2.size(); i++){
+			explosion2.get(i).render(screen);
+		}
 	}
 	
 	
@@ -150,7 +173,6 @@ public class Level
 		{
 			if(brokenCarbonX.get(i) == x && brokenCarbonY.get(i) == y) 
 				{
-			//	System.out.println("HELO");
 				t = Tile.voidTile;
 				}
 		}

@@ -110,8 +110,10 @@ class Game extends Canvas implements Runnable
 	public void update()
 	{
 		key.update();
-		player.update();
-		player2.update();
+		if (player.isAlive()) player.update();
+		if (player2.isAlive()) player2.update();
+		player.clear();
+		player2.clear();
 		level.update();
 	}
 	
@@ -129,8 +131,8 @@ class Game extends Canvas implements Runnable
 		int yScroll = player.y / screen.height / 2;
 		
 		level.render(xScroll, yScroll, screen);
-		player.render(screen);
-		player2.render(screen);
+		if (player.isAlive()) player.render(screen);
+		if (player2.isAlive()) player2.render(screen);
 		
 		for (int i = 0; i < pixels.length; i++)
 		{

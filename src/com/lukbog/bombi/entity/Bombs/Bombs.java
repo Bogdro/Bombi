@@ -26,49 +26,44 @@ public class Bombs extends Entity
 		bombCounter = 0;
 	}
 	
-	
-	
-	protected void plant()
-	{
-		
-	}
-	
 	public void update()
 	{
 		if (anim < 7500) anim ++;
 		else anim = 0;
 		
-		if (bombCounter > 200)
+		if (bombCounter > 900)
 		{
-			//System.out.println("Wybuchh");
-			
-			int xtt = 0, ytt = 0;
-			
-			double xt = (x/64.0);
-			double yt = (y/64.0);
-			if (xt >=  (int) xt + 0.5) xtt = (int) xt + 1;
-			if (xt < (int) xt + 0.5) xtt = (int) xt;
-			if (yt >=  (int) yt + 0.5) 	ytt = (int) yt + 1;
-			if (yt < (int) yt + 0.5) ytt = (int) yt;
-			
-			Level.explosion.add(new Explosion(xtt * 64, ytt * 64, 2, Sprite.explosion_1, level));
-			remove();
+			explosion();
 			
 		}
 	}
-	
-	public void remove()
+	public void explosion()
 	{
+		int xtt = 0, ytt = 0;
+		
+		double xt = (x/64.0);
+		double yt = (y/64.0);
+		if (xt >=  (int) xt + 0.5) xtt = (int) xt + 1;
+		if (xt < (int) xt + 0.5) xtt = (int) xt;
+		if (yt >=  (int) yt + 0.5) 	ytt = (int) yt + 1;
+		if (yt < (int) yt + 0.5) ytt = (int) yt;
+		
+		Level.explosion.add(new Explosion(xtt * 64, ytt * 64, range, Sprite.explosion_1, level));
 		removed = true;
 	}
 	
 	public void render(Screen screen) 
 	{
-		if(anim % 30 > 20) {
+		if(anim % 30 > 20) 
+		{
 			sprite = Sprite.tnt;
-		}else if(anim % 30 > 10) {
+		}
+		else if(anim % 30 > 10) 
+		{
 			sprite = Sprite.tnt;
-		}else {
+		}
+		else 
+		{
 			sprite = Sprite.tnt;
 			bombCounter++;
 		}

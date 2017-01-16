@@ -15,11 +15,9 @@ public class Explosion extends Entity {
 		this.x = x;
 		this.y = y;
 		this.sprite = sprite;
-		this.sprites = sprites;
 		removed = false;
 		this.level = level;
 		this.range = range;
-		System.out.println("nowa explosia");
 	}
 	
 	public void render(Screen screen)
@@ -56,36 +54,87 @@ public class Explosion extends Entity {
 		{
 			sprite = Sprite.explosion_1;
 		}
+		
 		for (int i = 0; i <= range; i++)
 		{
 			if (!level.getTile((x >> 6 ) + i, y >> 6).solid()) screen.renderExplosion(x+64*i, y, this);
-			if (level.getTile((x >> 6 ) + i, y >> 6).solid() && !level.getTile((x >> 6 ) + i, y >> 6).breakable()) continue;
-			if (level.getTile((x >> 6 ) + i, y >> 6).breakable()) screen.renderExplosion(x+64*i, y, this);
-			
-			if (!level.getTile((x >> 6 ) - i, y >> 6).solid()) screen.renderExplosion(x-64*i, y, this);
-			if (level.getTile((x >> 6 ) - i, y >> 6).solid() && !level.getTile((x >> 6 ) - i, y >> 6).breakable()) continue;
-			if (level.getTile((x >> 6 ) - i, y >> 6).breakable()) screen.renderExplosion(x- 64*i, y, this);
-			
-			if (!level.getTile((x >> 6 ), y + i>> 6).solid()) screen.renderExplosion(x, y+64*i, this);
-			if (level.getTile((x >> 6 ), y + i>> 6).solid() && !level.getTile((x >> 6 ), (y >> 6) - i).breakable()) continue;
-			if (level.getTile((x >> 6 ), y + i>> 6).breakable()) screen.renderExplosion(x , y+64*i, this);
-			
-			if (!level.getTile((x >> 6 ), y - i >> 6).solid()) screen.renderExplosion(x, y-64*i, this);
-			if (level.getTile((x >> 6 ), y - i >> 6).solid() && !level.getTile((x >> 6 ), (y >> 6) - i).breakable()) continue;
-			if (level.getTile((x >> 6 ), y - i >> 6).breakable()) screen.renderExplosion(x, y-64*i, this);
+			if (level.getTile((x >> 6 ) + i, y >> 6).solid() && !level.getTile((x >> 6 ) + i, y >> 6).breakable()) break;
+			if (level.getTile((x >> 6 ) + i, y >> 6).breakable()) 
+				{
+				screen.renderExplosion(x+64*i, y, this);
+				}
 		
-			if(counter == 25)
-			{
-				if (level.getTile((x >> 6 ) + i, y >> 6).breakable()) level.brokenCarbon((x >> 6) +i , y >> 6);
-				if (level.getTile((x >> 6 ) - i, y >> 6).breakable()) level.brokenCarbon((x >> 6) -i , y >> 6);
-				if (level.getTile((x >> 6 ), (y >> 6) + i).breakable()) level.brokenCarbon((x >> 6 ), (y >> 6) + i);
-				if (level.getTile((x >> 6 ), (y >> 6) - i).breakable()) level.brokenCarbon((x >> 6 ), (y >> 6) - i);
-				remove();
-			}
+			if(counter == 35) if (level.getTile((x >> 6 ) + i, y >> 6).breakable()) level.brokenCarbon((x >> 6) +i , y >> 6);
+			if(counter == 40) remove();
 		}
-		//System.out.println(level.getTile((x >> 6 ) + 1, y >> 6));
-		//if (level.getTile((x >> 6 ) + 1, y >> 6).breakable()) System.out.println("Wungiel");
 		
+		for (int i = 0; i <= range; i++)
+		{
+			if (!level.getTile((x >> 6 ) - i, y >> 6).solid()) screen.renderExplosion(x-64*i, y, this);
+			if (level.getTile((x >> 6 ) - i, y >> 6).solid() && !level.getTile((x >> 6 ) - i, y >> 6).breakable()) break;
+			if (level.getTile((x >> 6 ) - i, y >> 6).breakable()) 
+				{
+				screen.renderExplosion(x- 64*i, y, this);
+				}
+		
+			if(counter == 35) if (level.getTile((x >> 6 ) - i, y >> 6).breakable()) level.brokenCarbon((x >> 6) -i , y >> 6);
+			if(counter == 40) remove();
+
+		}
+		for (int i = 0; i <= range; i++)
+		{
+			if (!level.getTile((x >> 6 ), (y >> 6) + i).solid()) screen.renderExplosion(x, y+64*i, this);
+			if (level.getTile((x >> 6 ), (y >> 6) + i).solid() && !level.getTile((x >> 6 ), (y >> 6) + i).breakable()) break;
+			if (level.getTile((x >> 6 ), (y >> 6) + i).breakable()) 
+				{
+				screen.renderExplosion(x , y+64*i, this);
+				}
+			if (counter == 35) 	if (level.getTile((x >> 6 ), (y >> 6) + i).breakable()) level.brokenCarbon((x >> 6 ), (y >> 6) + i);
+			if(counter == 40) remove();
+		}
+		
+		for (int i = 0; i <= range; i++)
+		{
+			if (!level.getTile((x >> 6 ), (y >> 6) - i).solid()) screen.renderExplosion(x, y-64*i, this);
+			if (level.getTile((x >> 6 ), (y >> 6) - i).solid() && !level.getTile((x >> 6 ), (y >> 6) - i).breakable()) break;
+			if (level.getTile((x >> 6 ), (y >> 6) - i).breakable()) 
+				{
+				screen.renderExplosion(x , y-64*i, this);
+				}
+			
+			if(counter == 35) if (level.getTile((x >> 6 ), (y >> 6) - i).breakable()) level.brokenCarbon((x >> 6 ), (y >> 6) - i);
+			if(counter == 40) remove();
+		}
+	}
+	
+	public boolean explosionCollision(int x, int y)
+	{
+		for (int i = 0; i <= range; i++) 
+			{
+				//System.out.println(" X GRACZA : " + (x + 48) + "	|| X WYBUCHU	: " + ((this.x)));
+				if (x + 38 >= this.x - (i*64) && x + 38 <= (this.x + 63) - (i*64) && y <= (this.y + 54) && y + 54 >= (this.y)) 
+				{
+					//System.out.println("Koliduje z lewej");
+					return true;
+				}
+				if (x <= (this.x + 50) + (i*64) && x >= (this.x - 63) + (i*64) && y <= (this.y + 54) && y + 54 >= (this.y)) 
+					{
+					//System.out.println("KOLIDUJE Z PRAWEJ");
+					return true;
+					}
+				if (y + 40 >= this.y - (i*64) && y + 40 <= (this.y + 63) - (i*64) && x <= (this.x + 38) && x + 38 >= (this.x))
+				{
+					//System.out.println("KOLIDUJE NOGAMI");
+					return true;
+				}
+				if (y <= (this.y + 40) + (i*64) && y >= (this.y + 10) + (i*64)&& x <= (this.x + 38) && x + 38 >= (this.x))
+					{
+					//System.out.println("KOLIDUJE GLOWA");
+					return true;
+					}
+			}
+		
+		return false;
 	}
 	
 	public void remove()

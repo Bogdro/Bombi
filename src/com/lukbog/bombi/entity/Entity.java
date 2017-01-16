@@ -28,8 +28,6 @@ public abstract class Entity
 	
 	public void remove()
 	{
-		//Usuwanie z levelu
-		
 		removed = true;
 	}
 	

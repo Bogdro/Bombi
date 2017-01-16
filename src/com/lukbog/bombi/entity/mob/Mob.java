@@ -1,10 +1,7 @@
 package com.lukbog.bombi.entity.mob;
 
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.Timer;
 
 import com.lukbog.bombi.Screen;
 import com.lukbog.bombi.entity.Entity;
@@ -27,6 +24,7 @@ public abstract class Mob extends Entity //implements ActionListener
 	public boolean bombPlanted = false;
 	public long now = System.currentTimeMillis();
 	//public Timer timer = new Timer(1000, new MyTimerActionListener());
+	public boolean alive;
 	
 	public static List<Bombs> bombs = new ArrayList<Bombs>();
 	
@@ -75,6 +73,11 @@ public abstract class Mob extends Entity //implements ActionListener
 	public void render(Screen screen)
 	{
 		
+	}
+	
+	public boolean isAlive()
+	{
+		return alive;
 	}
 	
 }

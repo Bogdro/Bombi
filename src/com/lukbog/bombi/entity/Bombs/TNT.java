@@ -4,7 +4,8 @@ import com.lukbog.bombi.Screen;
 
 public class TNT extends Bombs {
 	
-
+	public static Explosion expl;
+	
 	public TNT(int x, int y, int dir) 
 	{
 		super(x, y, dir);
@@ -47,7 +48,7 @@ public class TNT extends Bombs {
 		else{
 			now = System.currentTimeMillis();
 			System.out.println("koniec");
-			Explosion expl = new Explosion(this.x, this.y, this.dir);
+			this.expl = new Explosion(this.x, this.y, this.dir);
 		}
 		screen.renderBombs(xtt * 64, ytt * 64, this);
 	}

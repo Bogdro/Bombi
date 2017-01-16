@@ -7,10 +7,11 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferInt;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import com.lukbog.bombi.Screen;
 import com.lukbog.bombi.entity.mob.Player;
+import com.lukbog.bombi.font.Font;
 import com.lukbog.bombi.input.Keyboard;
 import com.lukbog.bombi.level.FirstLevel;
 import com.lukbog.bombi.level.Level;
@@ -31,12 +32,14 @@ class Game extends Canvas implements Runnable
 	private Keyboard key;
 	private Level level;
 	private Player player;
+	boolean pausePressed;
+	boolean isPaused;
+	public Font pauseText;
 	
 	public Game()
 	{
 		Dimension size = new Dimension(width, height);
 		setPreferredSize(size);
-		
 		screen = new Screen(width, height);
 		frame = new JFrame();
 		key = new Keyboard();
@@ -44,6 +47,7 @@ class Game extends Canvas implements Runnable
 		TileCoordinate playerSpawn = new TileCoordinate(1,1);
 		player = new Player(playerSpawn.x(), playerSpawn.y(),key);
 		player.init(level);
+		pauseText = new Font(screen.width/2, screen.height/2, "PAUSED");
 		
 		addKeyListener(key);
 	}
@@ -88,6 +92,7 @@ class Game extends Canvas implements Runnable
 				updates++;
 				delta--;
 			}
+			
 			render();
 			frames++;
 			
@@ -105,8 +110,20 @@ class Game extends Canvas implements Runnable
 	public void update()
 	{
 		key.update();
-		player.update();
-		level.update();
+		if(!pausePressed && key.escape){
+			pausePressed = true;
+			//font = Font.paused;
+			isPaused = !(isPaused);
+		}else
+			if(pausePressed && !key.escape){
+				pausePressed = false;				
+			}
+		if(isPaused){
+			//font.render(screen);
+		}else{
+			player.update();
+			level.update();
+		}
 	}
 	
 	public void render()
@@ -117,13 +134,17 @@ class Game extends Canvas implements Runnable
 			createBufferStrategy(3);
 			return;
 		}
-
+		
 		screen.clear();
 		int xScroll = player.x / screen.width / 2;
 		int yScroll = player.y / screen.height / 2;
 		
 		level.render(xScroll, yScroll, screen);
 		player.render(screen);
+		
+		if(isPaused){
+			pauseText.render(screen);
+		}
 		
 		for (int i = 0; i < pixels.length; i++)
 		{
@@ -139,20 +160,20 @@ class Game extends Canvas implements Runnable
 		//wyswietla grafiki
 		bs.show();
 	}
-	
+		
 	public static void main(String[] args)
 	{
 		Game game = new Game();
-		game.frame.setResizable(false);                                                                        
+		game.frame.setResizable(true);                                                                        
         game.frame.setTitle(Game.title);
-		game.frame.add(game);
+
+        game.frame.add(game);
+	    game.frame.setPreferredSize(new Dimension(width, height));
 		game.frame.pack();
 		//game.frame.setUndecorated(true);			
         game.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		game.frame.setVisible(true);
-		
 		game.start();
 	}
 	
-
 }

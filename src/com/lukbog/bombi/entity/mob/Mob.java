@@ -62,7 +62,7 @@ public abstract class Mob extends Entity //implements ActionListener
 			if (bombs.size() == 0)
 			{
 				//timer.start();
-				Bombs b = new Explosion(x, y, dir);
+				Bombs b = new TNT(x, y, dir);
 				System.out.println("Dodalem nowa bombke po raz pierwszy");
 				bombPlanted = true;
 				bombs.add(b);

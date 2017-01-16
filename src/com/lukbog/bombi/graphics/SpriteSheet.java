@@ -5,6 +5,8 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import com.lukbog.bombi.graphics.SpriteSheet;
+
 public class SpriteSheet 
 {
 	private String path;
@@ -12,6 +14,7 @@ public class SpriteSheet
 	public int[] pixels;
 	
 	public static SpriteSheet spriteSheet = new SpriteSheet("/textures/spritesheet64.png", 640);
+	public static SpriteSheet text = new SpriteSheet("/textures/font.png", 864);
 	
 	public SpriteSheet(String path, int size)
 	{

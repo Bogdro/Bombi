@@ -112,12 +112,12 @@ public class Explosion extends Entity {
 		for (int i = 0; i <= range; i++) 
 			{
 				//System.out.println(" X GRACZA : " + (x + 48) + "	|| X WYBUCHU	: " + ((this.x)));
-				if (x + 38 >= this.x - (i*64) && x + 38 <= (this.x + 63) - (i*64) && y <= (this.y + 54) && y + 54 >= (this.y)) 
+				if (x + 38 >= this.x - (i*64) && x + 38 <= (this.x + 40) - (i*64) && y <= (this.y + 54) && y + 54 >= (this.y)) 
 				{
 					//System.out.println("Koliduje z lewej");
 					return true;
 				}
-				if (x <= (this.x + 50) + (i*64) && x >= (this.x - 63) + (i*64) && y <= (this.y + 54) && y + 54 >= (this.y)) 
+				if (x <= (this.x + 38) + (i*64) && x >= (this.x - 63) + (i*64) && y <= (this.y + 54) && y + 54 >= (this.y)) 
 					{
 					//System.out.println("KOLIDUJE Z PRAWEJ");
 					return true;

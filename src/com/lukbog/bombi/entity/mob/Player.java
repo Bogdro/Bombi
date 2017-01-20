@@ -58,15 +58,17 @@ public class Player extends Mob
 		
 		for (int i = 0; i < Level.explosion.size(); i++)
 		{
-			if (Level.bomb2.size() > 0)	
+			/*if (Level.bomb2.size() > 0)	
 				{
 				if (Level.explosion.get(i).explosionCollision(Level.bomb2.get(0).x, Level.bomb2.get(0).y))
 				
-			{
-			System.out.println("ASDKASKDASDA");
-			Level.bomb2.get(0).explosion();
-			break;
-			}}
+					{
+						System.out.println("ASDKASKDASDA");
+						Level.bomb2.get(0).explosion();
+						break;
+					}	
+				}*/
+			
 			if (Level.explosion.get(i).explosionCollision(x,  y))
 					{
 						

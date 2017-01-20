@@ -8,9 +8,14 @@ import com.lukbog.bombi.graphics.Sprite;
 
 public class TNT extends Bombs {
 	
+<<<<<<< HEAD
 	int i = 0;
 	long animationTimer = 0;
 	public boolean removed = false;
+=======
+	public static Explosion expl;
+	
+>>>>>>> origin/lukasz
 	public TNT(int x, int y, int dir) 
 	{
 		super(x, y, dir);
@@ -51,6 +56,7 @@ public class TNT extends Bombs {
 			screen.renderBombs(xtt * 64, ytt * 64, bomba);
 		}
 		else{
+<<<<<<< HEAD
 			if(System.currentTimeMillis() - animationTimer > 100){
 				animationTimer = System.currentTimeMillis();
 				
@@ -71,6 +77,11 @@ public class TNT extends Bombs {
 				//System.out.println(level.get(0));
 				//if (i == 8) level.remove(0);
 			}
+=======
+			now = System.currentTimeMillis();
+			System.out.println("koniec");
+			this.expl = new Explosion(this.x, this.y, this.dir);
+>>>>>>> origin/lukasz
 		}
 		screen.renderBombs(xtt * 64, ytt * 64, this);
 	}

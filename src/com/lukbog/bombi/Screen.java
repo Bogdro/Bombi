@@ -2,6 +2,7 @@ package com.lukbog.bombi;
 
 import java.util.Random;
 
+import com.lukbog.bombi.font.Font;
 import com.lukbog.bombi.entity.Bombs.Bombs;
 import com.lukbog.bombi.entity.Explosion.Explosion;
 import com.lukbog.bombi.graphics.Sprite;
@@ -134,6 +135,17 @@ public class Screen
 				if (xa < 0) xa = 0;
 				int color = sprite.pixels[xs + ys * 64];
 				if (color != 0xFFFF00FF) pixels[xa + ya * width] = color;
+			}
+		}
+	}
+	
+	public void renderText(int xp, int yp, Font font) {
+		for(int y = 0; y < 32; y++) {
+			int ya = y + yp;
+			for(int x = 0; x < font.SIZE; x++) {
+				int xa = x + xp;
+				int col = font.pixels[x + y * font.SIZE];
+				pixels[xa + ya * width] = col;
 			}
 		}
 	}

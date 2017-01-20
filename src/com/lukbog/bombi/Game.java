@@ -10,11 +10,8 @@ import java.awt.image.DataBufferInt;
 import javax.swing.*;
 
 import com.lukbog.bombi.entity.mob.Player;
-<<<<<<< HEAD
 import com.lukbog.bombi.entity.mob.Player2;
-=======
 import com.lukbog.bombi.font.Font;
->>>>>>> origin/lukasz
 import com.lukbog.bombi.input.Keyboard;
 import com.lukbog.bombi.level.FirstLevel;
 import com.lukbog.bombi.level.Level;
@@ -35,13 +32,10 @@ class Game extends Canvas implements Runnable
 	private Keyboard key;
 	private Level level;
 	private Player player;
-<<<<<<< HEAD
 	private Player2 player2;
-=======
 	boolean pausePressed;
 	boolean isPaused;
 	public Font pauseText;
->>>>>>> origin/lukasz
 	
 	public Game()
 	{
@@ -56,12 +50,9 @@ class Game extends Canvas implements Runnable
 		player = new Player(playerSpawn.x(), playerSpawn.y(),key, level);
 		player2 = new Player2(player2Spawn.x(), player2Spawn.y(),key, level);
 		player.init(level);
-<<<<<<< HEAD
 		player2.init(level);
 		
-=======
 		pauseText = new Font(screen.width/2, screen.height/2, "PAUSED");
->>>>>>> origin/lukasz
 		
 		addKeyListener(key);
 	}
@@ -124,13 +115,6 @@ class Game extends Canvas implements Runnable
 	public void update()
 	{
 		key.update();
-<<<<<<< HEAD
-		if (player.isAlive()) player.update();
-		if (player2.isAlive()) player2.update();
-		player.clear();
-		player2.clear();
-		level.update();
-=======
 		if(!pausePressed && key.escape){
 			pausePressed = true;
 			//font = Font.paused;
@@ -142,10 +126,12 @@ class Game extends Canvas implements Runnable
 		if(isPaused){
 			//font.render(screen);
 		}else{
-			player.update();
+			if (player.isAlive()) player.update();
+			if (player2.isAlive()) player2.update();
+			player.clear();
+			player2.clear();
 			level.update();
-		}
->>>>>>> origin/lukasz
+			}
 	}
 	
 	public void render()
@@ -187,7 +173,7 @@ class Game extends Canvas implements Runnable
 	public static void main(String[] args)
 	{
 		Game game = new Game();
-		game.frame.setResizable(true);                                                                        
+		game.frame.setResizable(false);                                                                        
         game.frame.setTitle(Game.title);
 
         game.frame.add(game);

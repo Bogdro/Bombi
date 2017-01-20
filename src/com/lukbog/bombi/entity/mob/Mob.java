@@ -53,32 +53,7 @@ public abstract class Mob extends Entity //implements ActionListener
 	{
 		
 	}
-	
-<<<<<<< HEAD
-=======
-	protected void plant(int x, int y, int dir)
-	{
-		if (bombs.size() < 1)
-		{	
-			if (bombs.size() == 0)
-			{
-				//timer.start();
-				Bombs b = new TNT(x, y, dir);
-				System.out.println("Dodalem nowa bombke po raz pierwszy");
-				bombPlanted = true;
-				bombs.add(b);
-				level.add(b);
-			}
-			for (int i = 0; i < bombs.size() ; i++)
-			{
-					if (bombs.get(i).x== x && bombs.get(i).y == y) break;
 		
-			}
-
-		}
-	}
->>>>>>> origin/lukasz
-	
 	private boolean collision(int dx, int dy)
 	{
 		boolean solid = false;

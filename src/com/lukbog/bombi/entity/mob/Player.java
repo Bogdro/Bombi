@@ -54,7 +54,7 @@ public class Player extends Mob
 		{
 			walking = false;
 		}
-		//clear();
+		clear();
 		
 		for (int i = 0; i < Level.explosion.size(); i++)
 		{
